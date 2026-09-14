@@ -7,25 +7,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Navbar -->
     <header class="navbar">
-        <div class="logo">GETCHA</div>
+        <div class="logo-container">
+            <span class="getcha-logo getcha-logo-animated">GETCHA</span>
+            <span class="getcha-impact">POP!</span>
+        </div>
         <nav>
-            <a href="#customer" id="nav-customer" class="active">Customer</a>
+            <a href="#customer" id="nav-customer" class="active">Marketplace</a>
             <a href="#partner" id="nav-partner">Partner</a>
             <a href="#merchant" id="nav-merchant">Merchant</a>
-            <a href="#admin" id="nav-admin">Admin</a>
+            <a href="#admin" id="nav-admin">Admin Control Center</a>
         </nav>
     </header>
 
     <main id="app">
-        <!-- Customer Portal Section -->
+        <!-- CUSTOMER MARKETPLACE PORTAL -->
         <section id="customer-portal" class="portal-section">
             <section class="hero">
+                <div class="location-picker">
+                    📍 <span>Delivering to: <strong>Vellore, Tamil Nadu</strong></span>
+                </div>
                 <h1>What do you need?</h1>
-                <p class="subtitle">You need it. We'll getcha.</p>
+                <p class="subtitle">From forgotten essentials to local shop deliveries — GETCHA gets it to you.</p>
+
+                <!-- Search Bar -->
+                <div class="search-box">
+                    <input type="text" id="marketplace-search" placeholder="🔍 Search for things, stores, brands or services (e.g. charger, notebook)...">
+                </div>
             </section>
 
-            <!-- Service Cards Grid -->
+            <!-- Primary Service Cards -->
             <section class="services-grid">
                 <div class="card service-card" data-service="forgot">
                     <div class="card-icon">📦</div>
@@ -54,32 +66,50 @@
                 </div>
             </section>
 
-            <!-- Guided "OOPS" / Request Flow Form -->
-            <section id="request-flow" class="request-container card">
-                <h2>Request a GETCHA</h2>
+            <!-- Horizontal Categories Scroll -->
+            <section class="category-scroll">
+                <div class="category-chip active" data-cat="all">⚡ All Items</div>
+                <div class="category-chip" data-cat="electronics">📱 Electronics</div>
+                <div class="category-chip" data-cat="stationery">📚 Stationery</div>
+                <div class="category-chip" data-cat="pharmacy">💊 Pharmacy</div>
+                <div class="category-chip" data-cat="essentials">🛒 Essentials</div>
+                <div class="category-chip" data-cat="gifts">🎁 Gifts</div>
+            </section>
+
+            <!-- Nearby Stores & Products Grid -->
+            <section class="marketplace-stores">
+                <h2>Available Near You (Vellore)</h2>
+                <div id="merchant-cards-grid" class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <!-- Dynamic Merchant Cards -->
+                </div>
+            </section>
+
+            <!-- Signature "I FORGOT SOMETHING" Guided Flow Form -->
+            <section id="request-flow" class="request-container card" style="margin-top: 2rem;">
+                <h2>GETCHA Request Flow</h2>
                 <form id="getcha-form">
-                    <div class="form-step step-1">
-                        <label for="item-type">What did you forget or need?</label>
+                    <div class="form-step">
+                        <label for="item-type">What do you need or what did you forget?</label>
                         <select id="item-type" required>
                             <option value="">Select item category...</option>
-                            <option value="Charger">Charger</option>
-                            <option value="ID Card">ID Card</option>
-                            <option value="Keys">Keys</option>
-                            <option value="Laptop">Laptop</option>
-                            <option value="Documents">Documents</option>
-                            <option value="Other">Other</option>
+                            <option value="Laptop Charger">Laptop Charger</option>
+                            <option value="ID Card & Keys">ID Card & Keys</option>
+                            <option value="Stationery Notebook">Stationery Notebook</option>
+                            <option value="Essential Medicines">Essential Medicines</option>
+                            <option value="Important Documents">Important Documents</option>
+                            <option value="Other Item">Other Item</option>
                         </select>
                     </div>
 
-                    <div class="form-step step-2">
-                        <label for="pickup-location">Where is it? (Pickup Location)</label>
-                        <input type="text" id="pickup-location" placeholder="e.g. Hostel Block A, Room 204" required>
+                    <div class="form-step">
+                        <label for="pickup-location">Pickup Location (Vellore)</label>
+                        <input type="text" id="pickup-location" placeholder="e.g. Vellore Tech Hub / Hostel Block A" required>
 
-                        <label for="drop-location">Where should we bring it? (Drop Location)</label>
-                        <input type="text" id="drop-location" placeholder="e.g. Library Desk 12" required>
+                        <label for="drop-location">Drop Destination (Vellore)</label>
+                        <input type="text" id="drop-location" placeholder="e.g. Library Desk 12 / Katpadi Rd" required>
                     </div>
 
-                    <div class="form-step step-3">
+                    <div class="form-step">
                         <label for="urgency-level">How urgently do you need it?</label>
                         <select id="urgency-level" required>
                             <option value="Standard">Standard (30-45 mins)</option>
@@ -88,56 +118,67 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn primary-btn">Calculate Estimate & Order</button>
+                    <button type="submit" class="btn primary-btn">Calculate Fee & Order GETCHA</button>
                 </form>
             </section>
 
-            <!-- Live Tracking / Status Display -->
-            <section id="tracking-section" class="tracking-container card hidden">
-                <h2>Live Tracking</h2>
-                <div id="tracking-status" class="status-badge">Searching for Partner...</div>
+            <!-- Live Map Tracking Display -->
+            <section id="tracking-section" class="tracking-container card hidden" style="margin-top: 2rem;">
+                <h2>Live GPS Tracking & Dispatch</h2>
+                <div id="tracking-status" class="status-badge">Searching for Partner in Vellore...</div>
+
+                <div id="map-container">
+                    <div class="map-route-line"></div>
+                    <div id="partner-marker" class="map-marker marker-partner">🛵</div>
+                    <div class="map-marker marker-drop">📍</div>
+                </div>
+
                 <div class="order-details">
                     <p><strong>Order ID:</strong> <span id="track-id">#GC1024</span></p>
                     <p><strong>Item:</strong> <span id="track-item">-</span></p>
                     <p><strong>Pickup:</strong> <span id="track-pickup">-</span></p>
                     <p><strong>Destination:</strong> <span id="track-drop">-</span></p>
-                    <p><strong>ETA:</strong> <span id="track-eta">15 mins</span></p>
-                    <p><strong>Estimated Fee:</strong> <span id="track-fee">₹79</span></p>
+                    <p><strong>Assigned Partner:</strong> <span id="track-partner">Demo Partner 01 (Vellore)</span></p>
+                    <p><strong>Estimated Delivery Fee:</strong> <span id="track-fee" style="color: var(--primary-neon); font-weight: 800;">₹79</span></p>
                 </div>
             </section>
         </section>
 
-        <!-- Partner App View Placeholder -->
+        <!-- PARTNER PORTAL VIEW -->
         <section id="partner-portal" class="portal-section hidden">
             <div class="card">
-                <h2>GETCHA PARTNER DASHBOARD</h2>
-                <div class="toggle-container">
-                    <span>Status: </span>
+                <h2>GETCHA PARTNER APP</h2>
+                <p class="text-muted">Simulated Location: Vellore, Tamil Nadu</p>
+                <div style="margin-bottom: 1.5rem;">
+                    <span>Partner Status: </span>
                     <button id="partner-toggle-online" class="btn secondary-btn">GO ONLINE</button>
                 </div>
-                <div id="partner-jobs-list" class="jobs-container">
-                    <p class="text-muted">No active jobs nearby. Go online to view requests.</p>
+                <div id="partner-jobs-list">
+                    <p class="text-muted">No active requests nearby. Go online to accept delivery tasks.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Merchant App View Placeholder -->
+        <!-- MERCHANT PORTAL VIEW -->
         <section id="merchant-portal" class="portal-section hidden">
             <div class="card">
-                <h2>Merchant Dashboard</h2>
+                <h2>GETCHA MERCHANT DASHBOARD</h2>
+                <p class="text-muted">Vellore Store Operations</p>
                 <div id="merchant-orders">
-                    <p class="text-muted">No pending merchant orders.</p>
+                    <p class="text-muted">No pending orders for store fulfillment.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Admin Control Center Placeholder -->
+        <!-- ADMIN CONTROL CENTER VIEW -->
         <section id="admin-portal" class="portal-section hidden">
             <div class="card">
-                <h2>Admin Control Center</h2>
+                <h2>GETCHA CONTROL CENTER</h2>
+                <p class="text-muted">Vellore Operations & Simulation Panel</p>
                 <div class="stats-grid">
                     <div class="stat-card"><h3>Active Orders</h3><p id="stat-active">0</p></div>
                     <div class="stat-card"><h3>Total Revenue</h3><p id="stat-revenue">₹0</p></div>
+                    <div class="stat-card"><h3>Active Partners</h3><p id="stat-partners">12 Available</p></div>
                 </div>
             </div>
         </section>
