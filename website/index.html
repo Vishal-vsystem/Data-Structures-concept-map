@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GETCHA - You need it. We'll getcha.</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">GETCHA</div>
+        <nav>
+            <a href="#customer" id="nav-customer" class="active">Customer</a>
+            <a href="#partner" id="nav-partner">Partner</a>
+            <a href="#merchant" id="nav-merchant">Merchant</a>
+            <a href="#admin" id="nav-admin">Admin</a>
+        </nav>
+    </header>
+
+    <main id="app">
+        <!-- Customer Portal Section -->
+        <section id="customer-portal" class="portal-section">
+            <section class="hero">
+                <h1>What do you need?</h1>
+                <p class="subtitle">You need it. We'll getcha.</p>
+            </section>
+
+            <!-- Service Cards Grid -->
+            <section class="services-grid">
+                <div class="card service-card" data-service="forgot">
+                    <div class="card-icon">📦</div>
+                    <h3>I FORGOT SOMETHING</h3>
+                    <p>Left something behind? We'll get it.</p>
+                </div>
+                <div class="card service-card" data-service="send">
+                    <div class="card-icon">🚀</div>
+                    <h3>SEND SOMETHING</h3>
+                    <p>Send an item anywhere nearby.</p>
+                </div>
+                <div class="card service-card" data-service="get">
+                    <div class="card-icon">🛍️</div>
+                    <h3>GET SOMETHING</h3>
+                    <p>Need something from a local shop?</p>
+                </div>
+                <div class="card service-card" data-service="return">
+                    <div class="card-icon">🔄</div>
+                    <h3>RETURN SOMETHING</h3>
+                    <p>We'll handle the return trip.</p>
+                </div>
+                <div class="card service-card highlight" data-service="urgent">
+                    <div class="card-icon">⚡</div>
+                    <h3>GETCHA NOW</h3>
+                    <p>Need it urgently?</p>
+                </div>
+            </section>
+
+            <!-- Guided "OOPS" / Request Flow Form -->
+            <section id="request-flow" class="request-container card">
+                <h2>Request a GETCHA</h2>
+                <form id="getcha-form">
+                    <div class="form-step step-1">
+                        <label for="item-type">What did you forget or need?</label>
+                        <select id="item-type" required>
+                            <option value="">Select item category...</option>
+                            <option value="Charger">Charger</option>
+                            <option value="ID Card">ID Card</option>
+                            <option value="Keys">Keys</option>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Documents">Documents</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-step step-2">
+                        <label for="pickup-location">Where is it? (Pickup Location)</label>
+                        <input type="text" id="pickup-location" placeholder="e.g. Hostel Block A, Room 204" required>
+
+                        <label for="drop-location">Where should we bring it? (Drop Location)</label>
+                        <input type="text" id="drop-location" placeholder="e.g. Library Desk 12" required>
+                    </div>
+
+                    <div class="form-step step-3">
+                        <label for="urgency-level">How urgently do you need it?</label>
+                        <select id="urgency-level" required>
+                            <option value="Standard">Standard (30-45 mins)</option>
+                            <option value="Fast">Fast (20-30 mins)</option>
+                            <option value="GETCHA NOW">GETCHA NOW (&lt;15 mins express)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn primary-btn">Calculate Estimate & Order</button>
+                </form>
+            </section>
+
+            <!-- Live Tracking / Status Display -->
+            <section id="tracking-section" class="tracking-container card hidden">
+                <h2>Live Tracking</h2>
+                <div id="tracking-status" class="status-badge">Searching for Partner...</div>
+                <div class="order-details">
+                    <p><strong>Order ID:</strong> <span id="track-id">#GC1024</span></p>
+                    <p><strong>Item:</strong> <span id="track-item">-</span></p>
+                    <p><strong>Pickup:</strong> <span id="track-pickup">-</span></p>
+                    <p><strong>Destination:</strong> <span id="track-drop">-</span></p>
+                    <p><strong>ETA:</strong> <span id="track-eta">15 mins</span></p>
+                    <p><strong>Estimated Fee:</strong> <span id="track-fee">₹79</span></p>
+                </div>
+            </section>
+        </section>
+
+        <!-- Partner App View Placeholder -->
+        <section id="partner-portal" class="portal-section hidden">
+            <div class="card">
+                <h2>GETCHA PARTNER DASHBOARD</h2>
+                <div class="toggle-container">
+                    <span>Status: </span>
+                    <button id="partner-toggle-online" class="btn secondary-btn">GO ONLINE</button>
+                </div>
+                <div id="partner-jobs-list" class="jobs-container">
+                    <p class="text-muted">No active jobs nearby. Go online to view requests.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Merchant App View Placeholder -->
+        <section id="merchant-portal" class="portal-section hidden">
+            <div class="card">
+                <h2>Merchant Dashboard</h2>
+                <div id="merchant-orders">
+                    <p class="text-muted">No pending merchant orders.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Control Center Placeholder -->
+        <section id="admin-portal" class="portal-section hidden">
+            <div class="card">
+                <h2>Admin Control Center</h2>
+                <div class="stats-grid">
+                    <div class="stat-card"><h3>Active Orders</h3><p id="stat-active">0</p></div>
+                    <div class="stat-card"><h3>Total Revenue</h3><p id="stat-revenue">₹0</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
